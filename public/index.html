@@ -1,89 +1,175 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0>
+		<title>Andrei's Website</title>
+		<link rel="stylesheet" 
+		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <link rel="stylesheet" 
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" 
+		integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+		
+		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans
+		+Pro:300,900&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="style.css">
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+		
+		<!--
+		<style>
+			body {
+				background-image: url("pattern.jpg");
+				background-color: #cccccc;
+			}
+		</style>
+		-->
+	</head>
+	<body>
+		<header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#projects" class="nav__link">My Projects</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About me</a></li>
+                    <li class="nav__item"><a href="#contact-form" class="nav__link">Contact me</a></li>
+                </ul>
+            </nav>
+        </header>
+		
+		<!-- Introduction -->
+		<section class="intro" id="home">
+			<h1 class="section__title section__title--intro">
+				Hello, I am <strong>Andrei Albu</strong>
+			</h1>
+			<p class="section__subtitle section__subtitle--intro">This is my website!</p>
+			<img src="images/pfp1.jpg" alt="a picture of me" class="intro__img">
+		</section>
+		
+		<!-- My Project -->
+		<section class="my-projects" id="projects">
+			<h2 class="section__title section__title--projects">My Projects</h2>
+			<div class="projects">
+				<div class="project">
+					<h3>Word Processor</h3>
+                    			<p>Created a simple word processor with a GUI using Java Swing in which you are able to write and save
+					text to your computer, while also being able to open files from your computer.</p>
+				</div> <!-- Close service div -->
+				
+				<div class="project">
+					<h3>Covi</h3>
+					<p>Collaborated on a team to develop a comprehensive Covid-19 Discord bot. Programmed in python and
+					used the Discord.py to interface with Discord. Utilized Serpapi to scrapeGoogle News for news articles
+					and Disease.sh - COVID-19 for local and global Covid-19 statistics.</p>
+				</div> <!-- Close service div -->		    
+						    
+				<div class="project">
+					<h3>XML Database</h3>
+					<p>Created a program using Java that allows users to store their information in an XML file on their
+					computer, and allows them to write new information when re-running the program without losing previously
+					stored information.</p>
+				</div> <!-- Close service div -->
+				
+				<!-- <div class="project">
+					<h3>Lab3</h3> -->
+                    <!--<p></p> -->
+				</div> <!-- Close service div -->
+			</div> <!-- Close services div -->
+			
+			<!-- Maybe dont need this -->
+			<a href="https://github.com/andreialbu03?tab=repositories" class="btn">My Projects</a>
+		</section>
+		
+		<!-- About me -->
+		<section class="about-me" id="about">
+			<h2 class="section__title section__title--about">Who I am</h2>
+			<p class="section__subtitle section__subtitle--about">1st Year Computer Science Student at <br> McMaster University</p>
+			
+			<div class="about-me__body">
+				<!--<p>Grade 12 student currently enrolled at Abbey Park High School</p>-->
+				<p>Ambitious and driven computer science student with excellent time management and communication skills.
+				I possess a strong ethic that helps me persevere through challenges. I have attended a few hackathons, such
+				as Hack the North 2021. My hobbies include playing and watching basketball, working out and reading about
+				new developments happening in information technology.</p>
+			</div>
+			
+			<img src="images/pfp2.jpg" alt="picture of" class="about-me__img" width="250" height="416">
+		</section>
+		
+		<!-- Contact Form-->
+		<div id="overlay">
+			<form class="contact-me-form" onsubmit="event.preventDefault(); validateForm()">
+				<h1 id="contact-form" class="contact-form">Contact Me</h1>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.6.3/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.6.3/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.6.3/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+				<label for="name">Name:</label>
+				<input type="text" id="name" placeholder="Your name">
+				<small class="error"></small>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+				<label for="email">Email:</label>
+				<input type="text" id="email" placeholder="Your email">
+				<small class="error"></small>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+				<label for="message">Message:</label>
+				<textarea id="message" placeholder="Your message" rows ="6"></textarea>
+				<small class="error"></small>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e: any) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+				<div class="center">
+					<input type="submit" value="Send Message">
+					<p id="success"></p>
+				</div>
+			</form>
+		</div>
+
+
+
+		<!-- Footer -->
+
+		<footer class="footer" id="contact">
+			<a href="mailto:andrei.albu03@gmail.com" class="footer__link">andrei.albu03@gmail.com</a>
+			<ul class="social-list">
+				<li class="social-list__item">
+					<a class="social-list__link" href="https://www.linkedin.com/in/andrei-albu-cs/" target="_blank">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</li>
+		<!--							     
+                <li class="social-list__item">
+					<a class="social-list__link" href="https://www.instagram.com" target="_blank">
+						<i class="fab fa-instagram"></i>
+					</a>
+				</li>
+		-->						
+				<!--
+                <li class="social-list__item">
+					<a class="social-list__link" href="https://twitter.com" target="_blank">
+						<i class="fab fa-twitter"></i>
+					</a>
+				</li>
+				-->
+                <li class="social-list__item">
+					<a class="social-list__link" href="https://github.com/andreialbu03" target="_blank">
+						<i class="fab fa-github"></i>
+					</a>
+				</li>
+									
+		<a href="https://devpost.com/andrei-albu03" class="footer__link"span style="font-size: 23px" target="_blank">Devpost</a>					
+						
+									
+			</ul>
+		</footer>
+	
+
+		<!-- JavaScript -->
+		<script src="firebase/firebase.js"></script>
+		<script src="index.js"></script>
+		
+	
+	</body>
 </html>
